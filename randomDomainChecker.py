@@ -2,6 +2,7 @@ import urllib2
 import json
 import random
 import time
+import sys
 
 def domainr_search_json(domainname):
 	requesturl = 'http://www.domai.nr/api/json/search?q='
@@ -21,13 +22,16 @@ def is_net_taken(domainr_json):
 
 def is_org_taken(domainr_json):
 	return domainr_json['results'][2]['availability'] == 'taken'
-text_file = open("/usr/share/dict/words","r")
+if (sys.platform == "win32"):
+	text_file = open("dictionary.txt","r")
+else:
+	text_file = open("/usr/share/dict/words","r")
 words = text_file.read().split('\n')
 while True:
 	max = len(words)
 	first = random.randint(0,max)
 	second = random.randint(0,max)
-	domainname = words[first]+words[second]
+	domainname = words[first].replace("'","")+words[second].replace("'","")
 	print "Checking domain " + domainname + ".com" 
 	test = domainr_search_json(domainname)
 	answer = is_com_taken(test)
