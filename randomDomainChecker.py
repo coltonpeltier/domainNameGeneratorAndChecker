@@ -40,4 +40,5 @@ while True:
 	print "    .com:" + str(dotComTaken)
 	print "    .net:" + str(dotNetTaken)
 	print "    .org:" + str(dotOrgTaken)
+	print " "
 	time.sleep(15)
