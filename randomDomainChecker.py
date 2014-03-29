@@ -32,8 +32,12 @@ while True:
 	first = random.randint(0,max)
 	second = random.randint(0,max)
 	domainname = words[first].replace("'","")+words[second].replace("'","")
-	print "Checking domain " + domainname + ".com" 
-	test = domainr_search_json(domainname)
-	answer = is_com_taken(test)
-	print "Taken: " + str(answer)
+	print "Checking if " + domainname + " extensions are already registered:"
+	rawJsonResults = domainr_search_json(domainname)
+	dotComTaken = is_com_taken(rawJsonResults)
+	dotOrgTaken = is_org_taken(rawJsonResults)
+	dotNetTaken = is_net_taken(rawJsonResults)
+	print "    .com:" + str(dotComTaken)
+	print "    .net:" + str(dotNetTaken)
+	print "    .org:" + str(dotOrgTaken)
 	time.sleep(15)
