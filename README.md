@@ -11,3 +11,7 @@ urllib2,
 sys
 
 can be run from the command line with python2.7
+
+This program relies on code written here:
+
+https://github.com/davemenninger/domainr.py
